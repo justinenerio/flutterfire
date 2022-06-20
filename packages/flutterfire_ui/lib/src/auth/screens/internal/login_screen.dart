@@ -1,9 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
 import 'package:flutter/widgets.dart';
 import 'package:flutterfire_ui/auth.dart';
-import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
 
 import '../../widgets/internal/universal_scaffold.dart';
-
 import 'responsive_page.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -23,6 +22,7 @@ class LoginScreen extends StatelessWidget {
   final Key? loginViewKey;
   final double breakpoint;
   final Set<FlutterFireUIStyle>? styles;
+  final Widget? authDivider;
 
   const LoginScreen({
     Key? key,
@@ -42,6 +42,7 @@ class LoginScreen extends StatelessWidget {
     this.loginViewKey,
     this.breakpoint = 800,
     this.styles,
+    this.authDivider,
   }) : super(key: key);
 
   @override
@@ -60,6 +61,7 @@ class LoginScreen extends StatelessWidget {
           showAuthActionSwitch: showAuthActionSwitch,
           subtitleBuilder: subtitleBuilder,
           footerBuilder: footerBuilder,
+          authDivider: authDivider,
         ),
       ),
     );

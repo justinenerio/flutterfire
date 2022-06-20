@@ -1,9 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
 import 'package:flutter/cupertino.dart' hide Title;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Title;
-
-import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
-
 import 'package:flutterfire_ui/auth.dart';
 import 'package:flutterfire_ui/i10n.dart';
 import 'package:flutterfire_ui/src/auth/widgets/email_link_sign_in_button.dart';
@@ -27,6 +25,8 @@ class LoginView extends StatefulWidget {
 
   final List<ProviderConfiguration> providerConfigs;
 
+  final Widget? authDivider;
+
   const LoginView({
     Key? key,
     required this.action,
@@ -38,6 +38,7 @@ class LoginView extends StatefulWidget {
     this.showAuthActionSwitch,
     this.footerBuilder,
     this.subtitleBuilder,
+    this.authDivider,
   }) : super(key: key);
 
   @override
@@ -191,6 +192,7 @@ class LoginViewState extends State<LoginView> {
           for (var config in widget.providerConfigs)
             if (config.isSupportedPlatform(platform))
               if (config is EmailProviderConfiguration) ...[
+                if (widget.authDivider != null) widget.authDivider!,
                 const SizedBox(height: 8),
                 EmailForm(
                   key: ValueKey(_action),

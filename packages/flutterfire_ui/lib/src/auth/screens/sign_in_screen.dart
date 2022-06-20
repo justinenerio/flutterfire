@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
 import 'package:flutterfire_ui/auth.dart';
 
 import 'internal/login_screen.dart';
@@ -27,6 +27,7 @@ class SignInScreen extends MultiProviderScreen {
   final List<FlutterFireUIAction> actions;
   final double breakpoint;
   final Set<FlutterFireUIStyle>? styles;
+  final Widget? authDivider;
 
   const SignInScreen({
     Key? key,
@@ -46,6 +47,7 @@ class SignInScreen extends MultiProviderScreen {
     this.actions = const [],
     this.breakpoint = 800,
     this.styles,
+    this.authDivider,
   }) : super(key: key, providerConfigs: providerConfigs, auth: auth);
 
   Future<void> _signInWithDifferentProvider(
@@ -96,6 +98,7 @@ class SignInScreen extends MultiProviderScreen {
         subtitleBuilder: subtitleBuilder,
         footerBuilder: footerBuilder,
         breakpoint: breakpoint,
+        authDivider: authDivider,
       ),
     );
   }
