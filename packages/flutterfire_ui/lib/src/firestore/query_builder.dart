@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// A function that builds a widget from a [FirestoreQueryBuilderSnapshot]
 ///
@@ -441,6 +441,7 @@ class FirestoreListView<Document> extends FirestoreQueryBuilder<Document> {
         ScrollViewKeyboardDismissBehavior.manual,
     String? restorationId,
     Clip clipBehavior = Clip.hardEdge,
+    Widget? empty,
   }) : super(
           key: key,
           query: query,
@@ -457,6 +458,10 @@ class FirestoreListView<Document> extends FirestoreQueryBuilder<Document> {
                 snapshot.error!,
                 snapshot.stackTrace!,
               );
+            }
+
+            if (snapshot.docs.isEmpty) {
+              return empty ?? const Center(child: Text('No items'));
             }
 
             return ListView.builder(
